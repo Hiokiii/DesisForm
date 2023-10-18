@@ -1,4 +1,4 @@
-const nombre = document.getElementById('nombre')
+const nombre = document.getElementById('nombre') 
 const alias = document.getElementById('alias')
 const votingForm = document.getElementById('votingForm')
 const aliasRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
