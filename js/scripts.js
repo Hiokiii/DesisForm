@@ -47,7 +47,8 @@ votingForm.addEventListener('submit', (e) => {
         messages.push('El correo electrónico ingresado no es válido.')
     }
 
-    // Validar region comunaquie
+    // Validar region comuna
+    //Verificar como hacer que n ode error con ls bdd
     
     if (region.value === '' || region.value == null || comuna.value === '' || comuna.value == null) {
         messages.push('Los campos Region y Comuna no deben quedar en blanco.')
