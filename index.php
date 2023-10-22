@@ -8,6 +8,7 @@
     <!-- <script defer src="js/regiones.js"></script> -->
     <script defer src="js/validaciones.js"></script>
     <script defer src="js/obtenercomunas.js"></script>
+    <script defer src="js/obtenercandidatos.js"></script>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
 </head>
@@ -52,12 +53,13 @@
         <div class="form-group">
             <label for="comuna">Comuna:</label>
             <select id="comuna" name="comuna">
-                
+                <!-- OBTENERCOMUNAS.JS -->
             </select>
         </div>
         <div class="form-group">
             <label for="candidato">Candidato:</label>
             <select id="candidato" name="candidato">
+                <!-- OBTENERCANDIDATOS.JS -->
             </select>
         </div>
         <div class="checkbox-group">

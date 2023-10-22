@@ -1,7 +1,12 @@
 document.getElementById("region").addEventListener("change", function() {
     var selectedRegionId = this.value;
-    //console.log(selectedRegionId);
-    fetchComunas(selectedRegionId);
+    if (selectedRegionId === "Seleccionar") {
+        document.getElementById('comuna').innerHTML = '';
+        document.getElementById('candidato').innerHTML = '';
+    } else {
+        document.getElementById('candidato').innerHTML = '';
+        fetchComunas(selectedRegionId);
+    }
 });
 
 function fetchComunas(regionId) {
@@ -20,10 +25,16 @@ function fetchComunas(regionId) {
             // Get the comuna select box
             var comunaSelect = document.getElementById('comuna');
 
-            // Clear the comuna select box
+            // Limpiar
             comunaSelect.innerHTML = '';
 
-            // Add the new options to the comuna select box
+            // Seleccionar Option 
+            var defaultOption = document.createElement('option');
+            defaultOption.value = "Seleccionar";
+            defaultOption.text = "Seleccionar";
+            comunaSelect.appendChild(defaultOption);
+
+            // Opciones comuna
             for (var i = 0; i < comunas.length; i++) {
                 var option = document.createElement('option');
                 option.value = comunas[i].id_Comuna;

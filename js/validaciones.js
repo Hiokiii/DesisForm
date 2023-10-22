@@ -1,14 +1,15 @@
 document.getElementById("votingForm").addEventListener("submit", function(event){
     event.preventDefault(); // detiene la acción de envío por defecto
   
-    var nombre = document.getElementById("nombre").value;
-    var alias = document.getElementById("alias").value;
-    var email = document.getElementById("email").value;
-    var rut = document.getElementById('rut').value;
-    var region = document.getElementById("region").value;
-    var comuna = document.getElementById("comuna").value;
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    var checkedCount = Array.from(checkboxes).filter(input => input.checked).length;
+    const nombre = document.getElementById("nombre").value;
+    const alias = document.getElementById("alias").value;
+    const rut = document.getElementById('rut').value;
+    const email = document.getElementById("email").value;
+    const region = document.getElementById("region").value;
+    const comuna = document.getElementById("comuna").value;
+    //const candidato = document.getElementById("candidato").value;
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const checkedCount = Array.from(checkboxes).filter(input => input.checked).length;
 
     if (!nombre) {
       alert("El campo Nombre y Apellido no debe quedar en blanco");
@@ -31,9 +32,13 @@ document.getElementById("votingForm").addEventListener("submit", function(event)
       return;
     }
   
+    if (region === "Seleccionar") {
+      alert("Por favor, selecciona una región");
+      return;
+    }
 
-    if (region === "Seleccionar" || !comuna) {
-      alert("Por favor, selecciona una región y una comuna");
+    if (comuna === "Seleccionar" || !comuna) {
+      alert("Por favor, selecciona una comuna");
       return;
     }
   
@@ -69,6 +74,5 @@ document.getElementById("votingForm").addEventListener("submit", function(event)
 
 //Falta
 //Pasar votacion a base de datos
-// Revisar duplicacion de rut
-//Mejorar Mensaje de cada error 
+//Revisar duplicacion de rut
 //Mejorar ingreso de rut al dejar de tener seleccionado el input
