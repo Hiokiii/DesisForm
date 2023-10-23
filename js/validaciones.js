@@ -54,6 +54,17 @@ document.getElementById("votingForm").addEventListener("submit", function(event)
   .then(response => response.text())
   .then(data => {
       alert(data); // Muestra el mensaje de éxito o error de la base de datos
+      // Limpiar los campos del formulario
+      if (data.includes("correctamente")) {
+        document.getElementById("nombre").value = "";
+        document.getElementById("alias").value = "";
+        document.getElementById("rut").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("region").value = "Seleccionar";
+        document.getElementById('comuna').innerHTML = '';
+        document.getElementById('candidato').innerHTML = '';
+        checkboxes.forEach(input => input.checked = false);
+      }
   })
   .catch(error => {
       console.error(error);
@@ -79,7 +90,23 @@ document.getElementById("votingForm").addEventListener("submit", function(event)
             S=(S+T%10*(9-M++%6))%11;
         return S?S-1:'k';
     }
-}
+  }
 
-//Falta
-//Mejorar ingreso de rut al dejar de tener seleccionado el input
+  //Cambiar rut en vivo
+  const rutInput = document.getElementById("rut");
+  rutInput.addEventListener("input", function(event) {
+    let rut = event.target.value.replace(/[^\dkK]/g, ""); // Eliminar caracteres no válidos
+
+    if (rut.length > 1) {
+      rut = rut.slice(0, -1) + "-" + rut.slice(-1); // Agregar guión
+    }
+
+    event.target.value = rut;
+  });
+
+  rutInput.addEventListener("keydown", function(event) {
+    const maxLength = 10; // Longitud máxima del RUT (incluyendo guión y dígito verificador)
+    if (event.target.value.length >= maxLength && event.key !== "Backspace") {
+      event.preventDefault();
+    }
+  });

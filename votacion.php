@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
 
     // Si se insertan, mandar alertas
     if ($conn->query($sql) === TRUE) {
-        echo "Los datos se han agregado correctamente a la base de datos";
+        echo "Los datos se han agregado correctamente a la base de datos";      
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
