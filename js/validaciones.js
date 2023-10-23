@@ -1,55 +1,64 @@
 document.getElementById("votingForm").addEventListener("submit", function(event){
-    event.preventDefault(); // detiene la acción de envío por defecto
-  
-    const nombre = document.getElementById("nombre").value;
-    const alias = document.getElementById("alias").value;
-    const rut = document.getElementById('rut').value;
-    const email = document.getElementById("email").value;
-    const region = document.getElementById("region").value;
-    const comuna = document.getElementById("comuna").value;
-    //const candidato = document.getElementById("candidato").value;
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const checkedCount = Array.from(checkboxes).filter(input => input.checked).length;
+  event.preventDefault(); // detiene la acción de envío por defecto
 
-    if (!nombre) {
-      alert("El campo Nombre y Apellido no debe quedar en blanco");
-      return;
-    }
-  
-    if (alias.length <= 5 || !/\d/.test(alias) || !/[a-zA-Z]/.test(alias)) {
-      alert("El campo Alias debe contener más de 5 caracteres y debe incluir letras y números");
-      return;
-    }
+  const nombre = document.getElementById("nombre").value;
+  const alias = document.getElementById("alias").value;
+  const rut = document.getElementById('rut').value;
+  const email = document.getElementById("email").value;
+  const region = document.getElementById("region").value;
+  const comuna = document.getElementById("comuna").value;
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const checkedCount = Array.from(checkboxes).filter(input => input.checked).length;
 
-    if (!Fn.validaRut(rut)) {
-        alert("El RUT ingresado no es válido.");
-        return;
-    }
-  
-    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(email)) {
-      alert("Por favor, introduce una dirección de correo electrónico válida");
-      return;
-    }
-  
-    if (region === "Seleccionar") {
-      alert("Por favor, selecciona una región");
-      return;
-    }
+  if (!nombre) {
+    alert("El campo Nombre y Apellido no debe quedar en blanco");
+    return;
+  }
 
-    if (comuna === "Seleccionar" || !comuna) {
-      alert("Por favor, selecciona una comuna");
+  if (alias.length <= 5 || !/\d/.test(alias) || !/[a-zA-Z]/.test(alias)) {
+    alert("El campo Alias debe contener más de 5 caracteres y debe incluir letras y números");
+    return;
+  }
+
+  if (!Fn.validaRut(rut)) {
+      alert("El RUT ingresado no es válido.");
       return;
-    }
-  
-    if (checkedCount < 2) {
-      alert("Por favor, selecciona al menos dos opciones en 'Cómo se enteró de nosotros'");
-      return;
-    }
-  
-    // Si todas las validaciones pasan, procede con la acción de envío
-    this.submit();
+  }
+
+  var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(email)) {
+    alert("Por favor, introduce una dirección de correo electrónico válida");
+    return;
+  }
+
+  if (region === "Seleccionar") {
+    alert("Por favor, selecciona una región");
+    return;
+  }
+
+  if (comuna === "Seleccionar" || !comuna) {
+    alert("Por favor, selecciona una comuna");
+    return;
+  }
+
+  if (checkedCount < 2) {
+    alert("Por favor, selecciona al menos dos opciones en 'Cómo se enteró de nosotros'");
+    return;
+  }
+
+  // Si todas las validaciones pasan, procede con el envío de los datos
+  fetch("votacion.php", {
+      method: "POST",
+      body: new URLSearchParams(new FormData(this))
+  })
+  .then(response => response.text())
+  .then(data => {
+      alert(data); // Muestra el mensaje de éxito o error de la base de datos
+  })
+  .catch(error => {
+      console.error(error);
   });
+});
 
   const Fn = {
     // Valida el rut con su cadena completa "XXXXXXXX-X"
@@ -73,6 +82,4 @@ document.getElementById("votingForm").addEventListener("submit", function(event)
 }
 
 //Falta
-//Pasar votacion a base de datos
-//Revisar duplicacion de rut
 //Mejorar ingreso de rut al dejar de tener seleccionado el input

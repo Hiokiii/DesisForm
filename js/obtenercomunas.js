@@ -22,7 +22,7 @@ function fetchComunas(regionId) {
             // Parse the JSON response
             var comunas = JSON.parse(xhr.responseText);
 
-            // Get the comuna select box
+            // Obtener seleccion
             var comunaSelect = document.getElementById('comuna');
 
             // Limpiar

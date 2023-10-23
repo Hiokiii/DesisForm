@@ -1,17 +1,35 @@
-.form-group {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+form {
+    border-top: 1px solid #41414181; 
+    border-left: 1px solid #41414181; 
+    padding: 20px; 
+}
+
+.form-group,
+.checkbox-group {
+    display: flex; 
+    align-items: center; 
     margin-bottom: 10px;
 }
+
 .form-group label {
+    min-width: 190px; 
     margin-right: 10px;
-}
-.checkbox-group {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 .checkbox-group label {
     margin-right: 10px;
+}
+.input-field,
+.select-field {
+  width: 100%;
+  max-width: 399px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .input-field,
+    .select-field {
+      max-width: 200px;
+    }
 }

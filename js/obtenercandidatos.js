@@ -16,13 +16,13 @@ function fetchCandidatos(candidatoId) {
             // Parse the JSON response
             var candidatos = JSON.parse(xhr.responseText);
 
-            // Get the comuna select box
+            // Obtener seleccion
             var candidatoSelect = document.getElementById('candidato');
 
-            // Clear the comuna select box
+            // Limpiar columna
             candidatoSelect.innerHTML = '';
 
-            // Add the new options to the comuna select box
+            // Añadir las nuevas opciones
             for (var i = 0; i < candidatos.length; i++) {
                 var option = document.createElement('option');
                 option.value = candidatos[i].id_Candidato;
