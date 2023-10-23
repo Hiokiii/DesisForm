@@ -1,6 +1,6 @@
 # Sistema de votación
 
-Formulario de votación. 
+Formulario de votación para la prueba de diagnostico. 
 
 ## Uso del proyecto
 
